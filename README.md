@@ -1,6 +1,6 @@
 # fastjson_rce_tool
 
-![Image](https://github.com/wyzxxz/fastjson_rce_tool/raw/master/example.jpg)
+![Image](https://xzfile.aliyuncs.com/xzvul/4afaaf0d31944b068e27afb45aae2556)
 
 ```
 1. RMI (need tomcat8)
