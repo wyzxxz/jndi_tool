@@ -1,7 +1,7 @@
 # fastjson_rce_tool
 
 ```
-if command need base64 command, input should startwith bash=/powershell=/python=/perl=
+if command need base64 encode, command should startwith bash=/powershell=/python=/perl=
 example:  bash=curl dnslog.wyzxxz.cn
 
 1. RMI (need tomcat8)
