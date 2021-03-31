@@ -34,7 +34,9 @@ addsize       填充内容
 
 tamper支持多个，但有些不能一起用，多个注意使用的先后顺序，例如 tohex,addcomment
 
-2.fastjson.LDAPRefServerAuto : 新增了一些场景的回显, 选择payload的地址增加了自定义，格式: payload={.........}
+2.fastjson.LDAPRefServerAuto : 新增了一些场景的回显, 选择payload的地方增加了自定义，格式: payload={.........}
+
+
 
 
 2020-10-30 新增：
