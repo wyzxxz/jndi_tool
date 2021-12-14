@@ -3,6 +3,8 @@
 ```
 声明： 此工具仅用于企业安全人员自查验证自身企业资产的安全风险，或有合法授权的安全测试，请勿用于其他用途，如有，后果自负。
 
+download_url : https://toolaffix.oss-cn-beijing.aliyuncs.com/jndi_tool.zip
+
 > java -jar jndi_tool.jar 
 Usage:
 jndi:
