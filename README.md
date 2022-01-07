@@ -6,6 +6,7 @@
 download_url : https://toolaffix.oss-cn-beijing.aliyuncs.com/jndi_tool.jar
 
 # 2022-01-07 修复了log4j批量检测的一个BUG以及做了优化，结果会保存到 log4j_result.txt
+log4j检测，建议用 0 或者 4 的payload ,相对通用一些
 
 
 > java -jar jndi_tool.jar 
